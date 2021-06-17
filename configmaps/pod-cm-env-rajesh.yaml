@@ -1,0 +1,23 @@
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: pod-configmap-env
+  namespace: configmap-test
+spec:
+  containers:
+  - name: container-configmap
+    image: busybox
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    env:
+    - name: pod-configmap-env
+      valueFrom:
+        configMapKeyRef:
+          name: singlevalue-map
+          key: partner-url
+    command: ["env"]
+    
+
+       
